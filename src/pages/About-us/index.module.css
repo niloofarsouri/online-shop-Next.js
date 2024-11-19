@@ -1,0 +1,29 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+}
+
+.main {
+    width: 50%;
+    height: 700px;
+    /* border: 1px solid; */
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #CAC3C1;
+}
+
+.main_image{
+    width: 50%;
+    padding: 1rem;
+    object-fit: cover;
+}
+
+.main_image img{
+    width: 100%;
+    border-radius: 50%;
+}
