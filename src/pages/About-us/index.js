@@ -23,7 +23,7 @@ function About() {
                         />
                     </div>
 
-                    <h3>Niloofar Souri</h3>
+                    <h2>Niloofar Souri</h2>
                 </div>
             </section>
         </>
