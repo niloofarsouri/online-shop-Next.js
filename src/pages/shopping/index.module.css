@@ -1,0 +1,19 @@
+.category_button_add {
+    width: 170px;
+    height: 50px;
+    border-radius: 5px;
+    border: 2px solid #CAC3C1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 1rem;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.category_button_add:hover{
+    background-color: #CAC3C1;
+    color: white;
+    transition: 0.5s;
+}

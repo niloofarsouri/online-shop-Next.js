@@ -13,19 +13,17 @@ function About() {
             <section className={style.container}>
                 <div className={style.main}>
                     <div className={style.main_image}>
-                        {/* <img src="./img/IMG_6917.jpg" /> */}
                         <Image
                             src={'/img/IMG_6917.JPG'}
-                            // src={me}
                             width={300}
                             height={400}
                             quality={100}
                             style={{ objectFit: 'cover' }}
-                            // sizes="(max-width: 768px)"
+                            layout="responsive"
                         />
                     </div>
 
-                    <h1>Niloofar Souri</h1>
+                    <h3>Niloofar Souri</h3>
                 </div>
             </section>
         </>

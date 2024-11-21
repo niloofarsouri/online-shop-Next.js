@@ -8,6 +8,11 @@ import Link from 'next/link'
 function Shop({ products }) {
 
 
+    const handleAddToBasket = (id) => {
+        console.log(id)
+    }
+
+
     return (
         <>
 
@@ -22,21 +27,22 @@ function Shop({ products }) {
             </section>
 
 
-            <section>
-                <div className='d-md-flex flex-row justify-content-center main_product_category'>
+            <section className='container-fluid'>
+                <div className='row justify-content-center p-1 m-2 main_product_category'>
                     {
                         products.map(item => {
                             return (
 
-                                <div key={item.id} className='card product_category'>
+                                <div key={item.id} className='col-12 col-md-4 col-xl-3 card product_category'>
                                     <Link href={`/shopping/${item.id}`}>
                                         <img src={item.image} className='card-img-top' />
                                     </Link>
                                     <div className='card-body'>
-                                        <h3>{item.title}</h3>
+                                        <h3 className='card-title'>{item.title}</h3>
                                         <h4>price: ${item.price}</h4>
                                         <span>{item.category}</span>
-                                        <p>{item.description}</p>
+                                        <p className='card-text'>{item.description}</p>
+                                        <div className={style.category_button_add} onClick={() => handleAddToBasket(item.id)}>Add to basket</div>
                                     </div>
                                 </div>
 
