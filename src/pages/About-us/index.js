@@ -1,5 +1,4 @@
 import style from '@/pages/About-us/index.module.css'
-import me from '@/pages/'
 import Image from 'next/image';
 
 
