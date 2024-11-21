@@ -1,6 +1,8 @@
 import style from '@/pages/About-us/index.module.css'
 import Image from 'next/image';
 
+// https://nextjs.org/docs/pages/api-reference/components/image
+
 
 
 function About() {
@@ -14,8 +16,12 @@ function About() {
                         {/* <img src="./img/IMG_6917.jpg" /> */}
                         <Image
                             src={'/img/IMG_6917.JPG'}
-                            width={100}
+                            // src={me}
+                            width={300}
                             height={400}
+                            quality={100}
+                            style={{ objectFit: 'cover' }}
+                            // sizes="(max-width: 768px)"
                         />
                     </div>
 
