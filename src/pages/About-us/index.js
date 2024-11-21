@@ -23,7 +23,9 @@ function About() {
                         />
                     </div>
 
-                    <h2>Niloofar Souri</h2>
+                    <div className={style.name}>
+                        <h2>Niloofar Souri</h2>
+                    </div>
                 </div>
             </section>
         </>
