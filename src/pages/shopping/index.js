@@ -1,17 +1,23 @@
 import Category from '@/components/category'
+import BasketContext from '@/context/basketContext'
 import style from '@/pages/shopping/index.module.css'
 import Head from 'next/head'
 import Link from 'next/link'
+import { Suspense, useContext, useEffect, useState } from 'react'
 
 
 
 function Shop({ products }) {
 
+    const [addBasket, setAddBasket] = useState([])
+    const { basket, setBasket } = useContext(BasketContext)
 
-    const handleAddToBasket = (id) => {
-        console.log(id)
+    const handleAddToBasket = (item) => {
+
+        setAddBasket(item)
+        basket.push(addBasket)
+        console.log(basket)
     }
-
 
     return (
         <>
@@ -22,35 +28,39 @@ function Shop({ products }) {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
 
-            <section>
-                <Category />
-            </section>
+            <Suspense fallback={<h1>is Loading...</h1>}>
+
+                <section>
+                    <Category />
+                </section>
 
 
-            <section className='container-fluid'>
-                <div className='row justify-content-center p-1 m-2 main_product_category'>
-                    {
-                        products.map(item => {
-                            return (
+                <section className='container-fluid'>
+                    <div className='row justify-content-center p-1 m-2 main_product_category'>
+                        {
+                            products.map(item => {
+                                return (
 
-                                <div key={item.id} className='col-12 col-md-4 col-xl-3 card product_category'>
-                                    <Link href={`/shopping/${item.id}`}>
-                                        <img src={item.image} className='card-img-top' />
-                                    </Link>
-                                    <div className='card-body'>
-                                        <h3 className='card-title'>{item.title}</h3>
-                                        <h4>price: ${item.price}</h4>
-                                        <span>{item.category}</span>
-                                        <p className='card-text'>{item.description}</p>
-                                        <div className={style.category_button_add} onClick={() => handleAddToBasket(item.id)}>Add to basket</div>
+                                    <div key={item.id} className='col-12 col-md-4 col-xl-3 card product_category'>
+                                        <Link href={`/shopping/${item.id}`}>
+                                            <img src={item.image} className='card-img-top' />
+                                        </Link>
+                                        <div className='card-body'>
+                                            <h3 className='card-title'>{item.title}</h3>
+                                            <h4>price: ${item.price}</h4>
+                                            <span>{item.category}</span>
+                                            <p className='card-text'>{item.description}</p>
+                                            <div className={style.category_button_add} onClick={() => handleAddToBasket(item)}>Add to basket</div>
+                                        </div>
                                     </div>
-                                </div>
 
-                            )
-                        })
-                    }
-                </div>
-            </section>
+                                )
+                            })
+                        }
+                    </div>
+                </section>
+
+            </Suspense>
         </>
     )
 }

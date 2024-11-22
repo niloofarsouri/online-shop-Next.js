@@ -15,14 +15,18 @@
     align-items: center;
     text-align: center;
     margin-top: 1rem;
+    margin-bottom: 1rem;
     transition: 0.5s;
     cursor: pointer;
+    overflow-y: hidden;
+    box-sizing: border-box;
 }
 
 .category_button:hover {
     transform: scale(1.05);
     background-color: #E7D5D2;
     transition: 0.5s;
+    overflow-y: hidden;
 }
 
 .main_card {
@@ -46,7 +50,7 @@
     cursor: pointer;
 }
 
-.category_button_add:hover{
+.category_button_add:hover {
     background-color: #CAC3C1;
     color: white;
     transition: 0.5s;

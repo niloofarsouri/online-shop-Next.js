@@ -1,6 +1,7 @@
 import style from '@/components/header/index.module.css'
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
+import Basket from '../basket';
 // import { HiShoppingBag } from "react-icons/hi";
 
 
@@ -27,7 +28,6 @@ function Header() {
                             <li>Home</li>
                         </Link>
 
-                        {/* <li>Shopping<HiShoppingBag /></li> */}
                         <Link href={'/shopping'}>
                             <li>Shopping</li>
                         </Link>
@@ -40,6 +40,12 @@ function Header() {
                             <li>Contact Us</li>
                         </Link>
                     </ul>
+                </div>
+
+                <div className={style.main_basket}>
+                    <Link href={'/my-basket'}>
+                        <Basket />
+                    </Link>
                 </div>
             </header>
 

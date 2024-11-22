@@ -15,7 +15,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-
+      <div className="main">
+        <p>Welcome to my World</p>
+      </div>
 
       {/* <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">

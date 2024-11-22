@@ -5,17 +5,9 @@
     overflow-x: hidden;
 }
 
-/* .main_product_category {
-    width: 100%;
-    height: auto;
-    padding: 2rem;
-    flex-direction: row;
+.main{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 
-} */
-
-/* .product_category { */
-    /* width: 24%; */
-    /* padding: 0.5rem; */
-    /* margin: 1px; */
-    /* overflow: hidden; */
-/* } */
+}
