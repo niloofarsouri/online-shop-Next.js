@@ -10,7 +10,7 @@ import { Suspense, useContext, useEffect, useState } from 'react'
 function Shop({ products }) {
 
     // const [addBasket, setAddBasket] = useState([])
-    const { basket, setBasket } = useContext(BasketContext)
+    const { basket, setBasket, favorite, setFavorite } = useContext(BasketContext)
 
     const handleAddToBasket = (item) => {
         // setAddBasket(item)
@@ -20,6 +20,18 @@ function Shop({ products }) {
         setBasket(prev => {
             return [...prev, item]
         })
+    }
+
+    const handleAddToFavorite = (item, state) => {
+        if (state) {
+            setFavorite((prev) => {
+                return [...prev, item]
+            })
+        } else {
+            setFavorite((prev) => {
+                return prev.filter(item => item.id != id)
+            })
+        }
     }
 
 
@@ -54,13 +66,26 @@ function Shop({ products }) {
                                             <h4>price: ${item.price}</h4>
                                             <span>{item.category}</span>
                                             <p className='card-text'>{item.description}</p>
-                                            {
-                                                basket.find((product) => product.id == item.id) ?
-                                                    <div className={style.category_button_added}>Added</div>
-                                                    :
-                                                    <div className={style.category_button_add} onClick={() => handleAddToBasket(item)}>Add to basket</div>
 
-                                            }
+                                            <div className='d-flex justify-content-around align-items-center mb-3'>
+                                                {
+                                                    basket.find((product) => product.id == item.id) ?
+                                                        <div className={style.category_button_added}>Added</div>
+                                                        :
+                                                        <div className={style.category_button_add} onClick={() => handleAddToBasket(item)}>Add to basket</div>
+
+                                                }
+
+                                                <div className={style.favorite_icon} onClick={() => handleAddToFavorite(item, true)}>
+                                                    {
+                                                        favorite.find((favorite) => favorite.id == item.id) ?
+                                                            <img src='./img/redHeart.png' />
+                                                            :
+                                                            <img src='./img/whiteHeart.png' />
+                                                    }
+                                                </div>
+                                            </div>
+
 
 
                                         </div>

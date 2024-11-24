@@ -11,7 +11,7 @@ function Category() {
     const [selectedCategory, setSelectedCategory] = useState('')
     const [products, setProducts] = useState([])
 
-    const { basket, setBasket } = useContext(BasketContext)
+    const { basket, setBasket, favorite, setFavorite } = useContext(BasketContext)
 
 
     useEffect(() => {
@@ -47,6 +47,18 @@ function Category() {
         })
     }
 
+    const handleAddToFavorite = (item, state) => {
+        if (state) {
+            setFavorite((prev) => {
+                return [...prev, item]
+            })
+        } else {
+            setFavorite((prev) => {
+                return prev.filter(item => item.id != id)
+            })
+        }
+    }
+
     return (
         <>
             <section className='container-fluid'>
@@ -76,12 +88,25 @@ function Category() {
                                         <h4>price: ${product.price}</h4>
                                         <span>{product.category}</span>
                                         <p className='card-text'>{product.description}</p>
-                                        {
-                                            basket.find((item) => item.id == product.id) ?
-                                                <div className={style.category_button_add}>Added</div>
-                                                :
-                                                <div className={style.category_button_add} onClick={() => handleAddToBasket(product)}>Add to basket</div>
-                                        }
+
+                                        <div className='d-flex justify-content-around align-items-center mb-3'>
+                                            {
+                                                basket.find((item) => product.id == item.id) ?
+                                                    <div className={style.category_button_added}>Added</div>
+                                                    :
+                                                    <div className={style.category_button_add} onClick={() => handleAddToBasket(product)}>Add to basket</div>
+
+                                            }
+
+                                            <div className={style.favorite_icon} onClick={() => handleAddToFavorite(product, true)}>
+                                                {
+                                                    favorite.find((favorite) => favorite.id == product.id) ?
+                                                        <img src='./img/redHeart.png' />
+                                                        :
+                                                        <img src='./img/whiteHeart.png' />
+                                                }
+                                            </div>
+                                        </div>
                                     </div>
 
                                 </div>

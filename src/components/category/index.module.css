@@ -55,3 +55,30 @@
     color: white;
     transition: 0.5s;
 }
+
+.category_button_added {
+    width: 170px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #CAC3C1;
+    border: 1px solid #CAC3C1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 1rem;
+    transition: 0.5s;
+    cursor: pointer;
+    pointer-events: none;
+    color: white;
+}
+
+.favorite_icon{
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+}
+
+.favorite_icon img{
+    width: 100%;
+}
