@@ -1,12 +1,20 @@
 import BasketContext from '@/context/basketContext'
 import style from '@/pages/my-basket/index.module.css'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import Link from 'next/link'
 
 
 function MyBasket() {
 
-    const { basket } = useContext(BasketContext)
+    const { basket, setBasket } = useContext(BasketContext)
+
+    const handleRemoveFromBasket = (id) => {
+
+            setBasket(prev => {
+                return prev.filter(item => item.id != id)
+            })
+
+    }
 
 
     return (
@@ -26,13 +34,15 @@ function MyBasket() {
                                         <h4>price: ${item.price}</h4>
                                         <span>{item.category}</span>
                                         <p className='card-text'>{item.description}</p>
-                                        <div className={style.category_button_add} onClick={() => handleAddToBasket(item)}>Add to basket</div>
+                                        <div className={style.category_button_add} onClick={() => handleRemoveFromBasket(item.id)}>Remove</div>
                                     </div>
                                 </div>
 
                             )
                         })
+
                     }
+
                 </div>
             </section>
         </>

@@ -9,11 +9,12 @@ import { useState } from "react";
 export default function App({ Component, pageProps }) {
 
   const [basket, setBasket] = useState([])
+  const [allProduct, setAllProduct] = useState([])
 
 
   return (
     <>
-      <BasketContext.Provider value={{ basket, setBasket }}>
+      <BasketContext.Provider value={{ basket, setBasket, allProduct, setAllProduct }}>
         <Layout>
           <Component {...pageProps} />
         </Layout>

@@ -29,7 +29,6 @@
 .main_header ul li:hover {
     transform: scale(1.05);
     transition: 1s;
-    /* background-color: #E7D5D2; */
     color: white;
     overflow-y: hidden;
 }
@@ -43,6 +42,7 @@
     background-color: #CAC3C1;
     width: 100%;
     height: auto;
+    transition: 1s;
 }
 
 .hamburger_menu a {

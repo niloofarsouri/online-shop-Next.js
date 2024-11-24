@@ -1,5 +1,6 @@
 import style from '@/components/category/index.module.css'
-import { useEffect, useState } from 'react';
+import BasketContext from '@/context/basketContext';
+import { useContext, useEffect, useState } from 'react';
 
 
 
@@ -9,6 +10,8 @@ function Category() {
     const [category, setCategory] = useState([])
     const [selectedCategory, setSelectedCategory] = useState('')
     const [products, setProducts] = useState([])
+
+    const { basket, setBasket } = useContext(BasketContext)
 
 
     useEffect(() => {
@@ -35,12 +38,13 @@ function Category() {
 
 
     const handleCategory = (cat) => {
-        // console.log(cat)
         setSelectedCategory(cat)
     }
 
-    const handleAddToBasket = () => {
-        alert('hi')
+    const handleAddToBasket = (item) => {
+        setBasket(prev => {
+            return [...prev, item]
+        })
     }
 
     return (
@@ -59,6 +63,7 @@ function Category() {
                 </div>
             </section >
 
+
             <section className='container-fluid'>
                 <div className='row justify-content-center p-1 m-2 main_product_category'>
                     {
@@ -67,11 +72,17 @@ function Category() {
                                 <div key={product.id} className='col-12 col-md-4 col-xl-3 card product_category'>
                                     <img src={product.image} className='card-img-top' />
                                     <div className='card-body'>
-                                        <h3>{product.title}</h3>
+                                        <h3 className='card-title'>{product.title}</h3>
                                         <h4>price: ${product.price}</h4>
                                         <span>{product.category}</span>
-                                        <p>{product.description}</p>
-                                        <div className={style.category_button_add} onClick={handleAddToBasket}>Add to basket</div>
+                                        <p className='card-text'>{product.description}</p>
+                                        {/* <div className={style.category_button_add} onClick={() => handleAddToBasket(product)}>Add to basket</div> */}
+                                        {
+                                            basket.find((item) => item.id == item) ?
+                                                <div className={style.category_button_add}>Added</div>
+                                                :
+                                                <div className={style.category_button_add} onClick={() => handleAddToBasket(product)}>Add to basket</div>
+                                        }
                                     </div>
 
                                 </div>
@@ -80,8 +91,14 @@ function Category() {
                     }
                 </div>
             </section>
+
+            <div className='m-5 overflow-y-hidden'>
+                <h1 className='p-0'>Selected category: {products.length}</h1>
+            </div>
+
         </>
     )
+
 }
 
 

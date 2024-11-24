@@ -2,21 +2,13 @@ import style from '@/components/header/index.module.css'
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import Basket from '../basket';
-// import { HiShoppingBag } from "react-icons/hi";
+
 
 
 
 function Header() {
 
     const [open, setOpen] = useState(false)
-    const menuRef = useRef()
-
-    const handleMenu = () => {
-        setOpen(true)
-        console.log(menuRef)
-
-    }
-
 
 
     return (
@@ -51,7 +43,7 @@ function Header() {
 
 
 
-            <header className='d-block d-md-none zindex-fixed' ref={menuRef}>
+            <header className='d-block d-md-none zindex-fixed'>
 
                 <div className={style.hamburger_menu_img} onClick={() => setOpen(!open)}>
                     <img src='./img/hamburger-icon.png' />

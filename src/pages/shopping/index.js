@@ -9,15 +9,19 @@ import { Suspense, useContext, useEffect, useState } from 'react'
 
 function Shop({ products }) {
 
-    const [addBasket, setAddBasket] = useState([])
+    // const [addBasket, setAddBasket] = useState([])
     const { basket, setBasket } = useContext(BasketContext)
 
     const handleAddToBasket = (item) => {
+        // setAddBasket(item)
+        // basket.push(addBasket)
+        // console.log(basket)
 
-        setAddBasket(item)
-        basket.push(addBasket)
-        console.log(basket)
+        setBasket(prev => {
+            return [...prev, item]
+        })
     }
+
 
     return (
         <>
@@ -50,7 +54,13 @@ function Shop({ products }) {
                                             <h4>price: ${item.price}</h4>
                                             <span>{item.category}</span>
                                             <p className='card-text'>{item.description}</p>
-                                            <div className={style.category_button_add} onClick={() => handleAddToBasket(item)}>Add to basket</div>
+                                            {
+                                                basket.find((item) => item.id == item) ?
+                                                    <div className={style.category_button_added}>Added</div>
+                                                    :
+                                                    <div className={style.category_button_add} onClick={() => handleAddToBasket(item)}>Add to basket</div>
+
+                                            }
                                         </div>
                                     </div>
 
@@ -60,7 +70,7 @@ function Shop({ products }) {
                     </div>
                 </section>
 
-            </Suspense>
+            </Suspense >
         </>
     )
 }
