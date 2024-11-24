@@ -55,12 +55,14 @@ function Shop({ products }) {
                                             <span>{item.category}</span>
                                             <p className='card-text'>{item.description}</p>
                                             {
-                                                basket.find((item) => item.id == item) ?
+                                                basket.find((product) => product.id == item.id) ?
                                                     <div className={style.category_button_added}>Added</div>
                                                     :
                                                     <div className={style.category_button_add} onClick={() => handleAddToBasket(item)}>Add to basket</div>
 
                                             }
+
+
                                         </div>
                                     </div>
 

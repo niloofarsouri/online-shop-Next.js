@@ -76,9 +76,8 @@ function Category() {
                                         <h4>price: ${product.price}</h4>
                                         <span>{product.category}</span>
                                         <p className='card-text'>{product.description}</p>
-                                        {/* <div className={style.category_button_add} onClick={() => handleAddToBasket(product)}>Add to basket</div> */}
                                         {
-                                            basket.find((item) => item.id == item) ?
+                                            basket.find((item) => item.id == product.id) ?
                                                 <div className={style.category_button_add}>Added</div>
                                                 :
                                                 <div className={style.category_button_add} onClick={() => handleAddToBasket(product)}>Add to basket</div>
