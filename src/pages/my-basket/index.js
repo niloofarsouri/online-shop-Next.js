@@ -1,12 +1,15 @@
 import BasketContext from '@/context/basketContext'
 import style from '@/pages/my-basket/index.module.css'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Link from 'next/link'
 
 
 function MyBasket() {
 
+
     const { basket, setBasket, favorite, setFavorite } = useContext(BasketContext)
+    // const [addFavorite, setAddFavorite] = useState(true)
+
 
     const handleRemoveFromBasket = (id) => {
 
@@ -16,15 +19,18 @@ function MyBasket() {
 
     }
 
+
     const handleAddToFavorite = (item, state) => {
         if (state) {
             setFavorite((prev) => {
                 return [...prev, item]
             })
+            // setAddFavorite(!state)
         } else {
             setFavorite((prev) => {
-                return prev.filter(item => item.id != id)
+                return prev.filter((favorite) => favorite.id !== item.id)
             })
+            // setAddFavorite(!state)
         }
     }
 

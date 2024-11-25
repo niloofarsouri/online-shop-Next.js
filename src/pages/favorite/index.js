@@ -5,25 +5,12 @@ import Link from 'next/link';
 
 function Favorite() {
 
-    const { basket, setBasket, favorite, setFavorite } = useContext(BasketContext)
+    const { favorite, setFavorite } = useContext(BasketContext)
 
-
-    const handleAddToBasket = (item) => {
-        // setAddBasket(item)
-        // basket.push(addBasket)
-        // console.log(basket)
-
-        setBasket(prev => {
-            return [...prev, item]
+    const handleRemoveFromFavorite = (id) => {
+        setFavorite((prev) => {
+            return prev.filter(item => item.id != id)
         })
-    }
-
-    const handleAddToFavorite = (item, state) => {
-        if (state) {
-            setFavorite((prev) => {
-                return [...prev, item]
-            })
-        }
     }
 
 
@@ -34,7 +21,6 @@ function Favorite() {
                     {
                         favorite.map(item => {
                             return (
-
                                 <div key={item.id} className='col-12 col-md-4 col-xl-3 card product_category'>
                                     <Link href={`/shopping/${item.id}`}>
                                         <img src={item.image} className='card-img-top' />
@@ -44,31 +30,21 @@ function Favorite() {
                                         <h4>price: ${item.price}</h4>
                                         <span>{item.category}</span>
                                         <p className='card-text'>{item.description}</p>
+                                    </div>
 
-                                        <div className='d-flex justify-content-around align-items-center mb-3'>
+                                    <div className='d-flex justify-content-around align-items-center mb-3'>
+                                        <div className={style.category_button_add} onClick={() => handleRemoveFromBasket(item.id)}>Remove</div>
+
+                                        <div className={style.favorite_icon} onClick={() => handleRemoveFromFavorite(item.id)}>
                                             {
-                                                basket.find((product) => product.id == item.id) ?
-                                                    <div className={style.category_button_added}>Added</div>
+                                                favorite.find((favorite) => favorite.id == item.id) ?
+                                                    <img src='./img/redHeart.png' />
                                                     :
-                                                    <div className={style.category_button_add} onClick={() => handleAddToBasket(item)}>Add to basket</div>
-
+                                                    <img src='./img/whiteHeart.png' />
                                             }
-
-                                            <div className={style.favorite_icon} onClick={() => handleAddToFavorite(item, true)}>
-                                                {
-                                                    favorite.find((favorite) => favorite.id == item.id) ?
-                                                        <img src='./img/redHeart.png' />
-                                                        :
-                                                        <img src='./img/whiteHeart.png' />
-                                                }
-                                            </div>
                                         </div>
-
-
-
                                     </div>
                                 </div>
-
                             )
                         })
                     }
