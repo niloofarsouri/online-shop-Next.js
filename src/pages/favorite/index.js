@@ -5,7 +5,18 @@ import Link from 'next/link';
 
 function Favorite() {
 
-    const { setBasket, favorite, setFavorite } = useContext(BasketContext)
+    const { basket, setBasket, favorite, setFavorite } = useContext(BasketContext)
+
+
+    const handleAddToBasket = (props) => {
+        // setAddBasket(item)
+        // basket.push(addBasket)
+        // console.log(basket)
+
+        setBasket(prev => {
+            return [...prev, props]
+        })
+    }
 
     const handleRemoveFromBasket = (id) => {
 
@@ -53,7 +64,15 @@ function Favorite() {
                                     </div>
 
                                     <div className='d-flex justify-content-around align-items-center mb-3'>
-                                        <div className={style.category_button_add} onClick={() => handleRemoveFromBasket(item.id)}>Remove</div>
+                                        {/* <div className={style.category_button_add} onClick={() => handleRemoveFromBasket(item.id)}>Remove</div> */}
+
+                                        {
+                                            basket.find((product) => product.id == item.id) ?
+                                                <div className={style.category_button_added}>Added</div>
+                                                :
+                                                <div className={style.category_button_add} onClick={() => handleAddToBasket(item)}>Add to basket</div>
+
+                                        }
 
                                         <div className={style.favorite_icon}>
                                             {
