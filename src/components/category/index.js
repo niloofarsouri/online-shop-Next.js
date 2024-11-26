@@ -1,11 +1,13 @@
 import style from '@/components/category/index.module.css'
 import { useContext, useEffect, useState } from 'react';
+import Card from '../card';
 
 
 
 
 function Category() {
 
+    const [isLoading, setIsLoading] = useState(true)
     const [category, setCategory] = useState([])
     const [selectedCategory, setSelectedCategory] = useState('')
     const [products, setProducts] = useState([])
@@ -13,9 +15,12 @@ function Category() {
 
 
     useEffect(() => {
+        setIsLoading(true)
         fetch('https://fakestoreapi.com/products/categories')
             .then(res => res.json())
             .then(json => setCategory(json))
+        setIsLoading(false)
+
     })
 
 
@@ -39,6 +44,9 @@ function Category() {
         setSelectedCategory(cat)
     }
 
+    if (isLoading) {
+        return (<h1>Loading...</h1>)
+    }
 
 
     return (

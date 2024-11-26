@@ -5,7 +5,27 @@ import Link from 'next/link';
 
 function Favorite() {
 
-    const { favorite, setFavorite } = useContext(BasketContext)
+    const { setBasket, favorite, setFavorite } = useContext(BasketContext)
+
+    const handleRemoveFromBasket = (id) => {
+
+        setBasket(prev => {
+            return prev.filter(item => item.id != id)
+        })
+
+    }
+
+    const handleAddToFavorite = (props, state) => {
+        if (state) {
+            setFavorite((prev) => {
+                return [...prev, props]
+            })
+        } else {
+            setFavorite((prev) => {
+                return prev.filter(item => item.id != props.id)
+            })
+        }
+    }
 
     const handleRemoveFromFavorite = (id) => {
         setFavorite((prev) => {
@@ -35,12 +55,12 @@ function Favorite() {
                                     <div className='d-flex justify-content-around align-items-center mb-3'>
                                         <div className={style.category_button_add} onClick={() => handleRemoveFromBasket(item.id)}>Remove</div>
 
-                                        <div className={style.favorite_icon} onClick={() => handleRemoveFromFavorite(item.id)}>
+                                        <div className={style.favorite_icon}>
                                             {
                                                 favorite.find((favorite) => favorite.id == item.id) ?
-                                                    <img src='./img/redHeart.png' />
+                                                    <img src='./img/redHeart.png' onClick={() => handleRemoveFromFavorite(item.id)} />
                                                     :
-                                                    <img src='./img/whiteHeart.png' />
+                                                    <img src='./img/whiteHeart.png' onClick={() => handleAddToFavorite(item.id, true)} />
                                             }
                                         </div>
                                     </div>

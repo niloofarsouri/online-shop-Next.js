@@ -33,6 +33,11 @@ function Card(props) {
         }
     }
 
+    const handleRemoveFromFavorite = (id) => {
+        setFavorite((prev) => {
+            return prev.filter(item => item.id != id)
+        })
+    }
 
     return (
         <>
@@ -55,12 +60,12 @@ function Card(props) {
 
                         }
 
-                        <div className={style.favorite_icon} onClick={() => handleAddToFavorite(props, true)}>
+                        <div className={style.favorite_icon}>
                             {
                                 favorite.find((favorite) => favorite.id == props.id) ?
-                                    <img src='./img/redHeart.png' />
+                                    <img src='./img/redHeart.png' onClick={() => handleRemoveFromFavorite(props, false)} />
                                     :
-                                    <img src='./img/whiteHeart.png' />
+                                    <img src='./img/whiteHeart.png' onClick={() => handleAddToFavorite(props, true)} />
                             }
                         </div>
                     </div>
