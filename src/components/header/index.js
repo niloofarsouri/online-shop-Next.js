@@ -2,8 +2,6 @@ import style from '@/components/header/index.module.css'
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import Basket from '../basket';
-import Image from 'next/image';
-
 
 
 
@@ -92,11 +90,18 @@ function Header() {
                                     <li>Contact Us</li>
                                 </Link>
 
+                                <Link href={'/my-basket'}>
+                                    <li>
+                                        My Basket
+                                    </li>
+                                </Link>
+
                                 <Link href={'/favorite'}>
                                     <li className={style.main_favorite}>
                                         <img src='./img/redHeart.png' />
                                     </li>
                                 </Link>
+
                             </ul>
 
                         </div>
