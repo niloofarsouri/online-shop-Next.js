@@ -41,7 +41,7 @@ function About() {
                                 width={150}
                                 height={90}
                                 quality={100}
-                                style={{ objectFit: 'cover' }}
+                                style={{ objectFit: 'cover', borderRadius: ' 50 %' }}
                                 layout="responsive"
                             />
                         </div>
