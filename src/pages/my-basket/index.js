@@ -1,6 +1,6 @@
 import BasketContext from '@/context/basketContext'
 import style from '@/pages/my-basket/index.module.css'
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 import Link from 'next/link'
 
 
@@ -8,7 +8,7 @@ function MyBasket() {
 
 
     const { basket, setBasket, favorite, setFavorite } = useContext(BasketContext)
-    // const [addFavorite, setAddFavorite] = useState(true)
+
 
 
     const handleRemoveFromBasket = (id) => {
@@ -20,17 +20,16 @@ function MyBasket() {
     }
 
 
-    const handleAddToFavorite = (item, state) => {
+    const handleFavorite = (props, state) => {
         if (state) {
             setFavorite((prev) => {
-                return [...prev, item]
+                return [...prev, props]
             })
-            // setAddFavorite(!state)
+
         } else {
             setFavorite((prev) => {
-                return prev.filter((favorite) => favorite.id !== item.id)
+                return prev.filter(item => item.id != props.id)
             })
-            // setAddFavorite(!state)
         }
     }
 
@@ -56,16 +55,19 @@ function MyBasket() {
                                     <div className='d-flex justify-content-around align-items-center mb-3'>
                                         <div className={style.category_button_add} onClick={() => handleRemoveFromBasket(item.id)}>Remove</div>
 
-                                        <div className={style.favorite_icon} onClick={() => handleAddToFavorite(item, true)}>
+                                        <div className={style.favorite_icon}>
                                             {
                                                 favorite.find((favorite) => favorite.id == item.id) ?
-                                                    <img src='./img/redHeart.png' />
+                                                    <img src='./img/redHeart.png' onClick={() => handleFavorite(item, false)} />
                                                     :
-                                                    <img src='./img/whiteHeart.png' />
+                                                    <img src='./img/whiteHeart.png' onClick={() => handleFavorite(item, true)} />
                                             }
+
+
                                         </div>
                                     </div>
                                 </div>
+
 
                             )
                         })
